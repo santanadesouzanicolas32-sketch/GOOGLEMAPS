@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NS Solutions TI – Tech Company</title>
+    <meta name="description" content="NS Solutions TI – Tech Company. Tráfego local, desenvolvimento web, landing pages, hospedagem e muito mais. Solicite um orçamento gratuito!">
+    <link rel="icon" href="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto,w_32/NS_Solutions_logo_sem_subtitulo_zfywei" sizes="32x32">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto,w_180/NS_Solutions_logo_sem_subtitulo_zfywei">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --gold: #c8962e;
+            --gold-light: #e8c266;
+            --gold-dark: #8b6914;
+            --gold-glow: rgba(200, 150, 46, 0.12);
+            --bg: #060606;
+            --bg-card: #0e0e0e;
+            --bg-input: #111111;
+            --border: rgba(200, 150, 46, 0.12);
+            --border-hover: rgba(200, 150, 46, 0.4);
+            --text: #d4d4d4;
+            --text-muted: #777777;
+            --white: #ffffff;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; }
+
+        .gold { color: var(--gold); }
+        .gold-gradient {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+
+        /* ===== PARTICLES / FUTURISTIC BG ===== */
+        .fx-grid {
+            position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(200,150,46,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(200,150,46,0.025) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .fx-glow-tl {
+            position: absolute; top: -20%; left: -10%; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(200,150,46,0.07) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
+        }
+        .fx-glow-br {
+            position: absolute; bottom: -20%; right: -10%; width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(200,150,46,0.05) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
+        }
+        .fx-line-v {
+            position: absolute; top: 0; left: 50%; width: 1px; height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(200,150,46,0.06) 30%, rgba(200,150,46,0.06) 70%, transparent 100%);
+            pointer-events: none;
+        }
+        .fx-corners {
+            position: absolute; inset: 30px; border: 1px solid rgba(200,150,46,0.04);
+            pointer-events: none;
+        }
+        .fx-corners::before, .fx-corners::after {
+            content: ''; position: absolute; width: 20px; height: 20px;
+            border-color: var(--gold); border-style: solid;
+        }
+        .fx-corners::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+        .fx-corners::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; border-radius: 4px; font-weight: 600;
+            font-size: 0.85rem; transition: all 0.3s; cursor: pointer;
+            border: none; text-transform: uppercase; letter-spacing: 0.5px;
+            font-family: inherit;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--bg);
+        }
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(200,150,46,0.25);
+        }
+        .btn-outline {
+            background: transparent; color: var(--gold); border: 1px solid rgba(200,150,46,0.3);
+        }
+        .btn-outline:hover {
+            background: var(--gold); color: var(--bg); transform: translateY(-2px);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(6,6,6,0.92); backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border); padding: 12px 0;
+        }
+        .header-container {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 1200px; margin: 0 auto; padding: 0 24px;
+        }
+        .logo img { height: 46px; }
+        nav ul { display: flex; list-style: none; gap: 32px; }
+        nav ul li a {
+            color: var(--text-muted); font-weight: 500; font-size: 0.82rem;
+            letter-spacing: 1px; transition: color 0.3s; text-transform: uppercase;
+        }
+        nav ul li a:hover { color: var(--gold); }
+        .header-cta { display: inline-flex; }
+        .menu-toggle {
+            display: none; background: none; border: none;
+            color: var(--gold); font-size: 1.4rem; cursor: pointer;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding-top: 80px; position: relative; overflow: hidden; overflow-x: clip;
+        }
+        .hero .container {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+            align-items: center; position: relative; z-index: 1;
+        }
+        .hero-tag {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 3px; color: var(--gold); margin-bottom: 20px;
+        }
+        .hero-tag::before {
+            content: ''; width: 28px; height: 1px; background: var(--gold);
+        }
+        .hero-content h1 {
+            font-size: 3.2rem; font-weight: 800; line-height: 1.08;
+            margin-bottom: 28px; color: var(--white);
+        }
+        .hero-content > p {
+            font-size: 0.95rem; color: var(--text-muted);
+            margin-bottom: 36px; max-width: 480px; line-height: 1.8;
+        }
+        .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .hero-image { display: flex; justify-content: center; align-items: center; position: relative; }
+        .hero-image img {
+            max-width: 360px; position: relative; z-index: 1;
+            filter: drop-shadow(0 0 80px rgba(200,150,46,0.12));
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero-ring {
+            position: absolute; width: 400px; height: 400px;
+            border: 1px solid rgba(200,150,46,0.08); border-radius: 50%;
+            animation: spin 25s linear infinite;
+        }
+        .hero-ring::before {
+            content: ''; position: absolute; top: -4px; left: 50%;
+            width: 8px; height: 8px; background: var(--gold); border-radius: 50%;
+            box-shadow: 0 0 12px var(--gold);
+        }
+        .hero-ring-2 {
+            position: absolute; width: 320px; height: 320px;
+            border: 1px dashed rgba(200,150,46,0.05); border-radius: 50%;
+            animation: spin 18s linear infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-14px); }
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===== SECTIONS ===== */
+        section { padding: 100px 0; position: relative; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.2rem; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+        .divider {
+            width: 50px; height: 2px; margin: 0 auto;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        /* ===== PERSUASION CARDS (services) ===== */
+        .services { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .service-card {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 36px 24px; text-align: left; transition: all 0.4s;
+            position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .service-card:hover {
+            border-color: var(--border-hover); transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+        }
+        .service-card:hover::before { opacity: 1; }
+
+        .service-card .card-header {
+            display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
+        }
+        .service-card .icon-wrap {
+            width: 48px; height: 48px; background: var(--gold-glow);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .service-card .icon-wrap img { width: 30px; height: 30px; }
+        .service-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--white); line-height: 1.3; }
+        .service-card .desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
+        .service-card .persuasion {
+            font-size: 0.78rem; color: var(--gold); font-weight: 500;
+            display: flex; align-items: center; gap: 6px;
+            padding-top: 12px; border-top: 1px solid var(--border);
+        }
+        .service-card .persuasion i { font-size: 0.7rem; }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+            padding: 40px 0;
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center;
+        }
+        .stat-item { padding: 16px; }
+        .stat-item .number {
+            font-size: 2rem; font-weight: 800; margin-bottom: 4px;
+        }
+        .stat-item span { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ===== PORTFOLIO ===== */
+        .portfolio { background: var(--bg); overflow: hidden; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+        .portfolio-item {
+            position: relative; border-radius: 8px; overflow: hidden;
+            aspect-ratio: 1; border: 1px solid var(--border); transition: border-color 0.3s;
+        }
+        .portfolio-item:hover { border-color: var(--border-hover); }
+        .portfolio-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .portfolio-item:hover img { transform: scale(1.08); }
+
+        .portfolio-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(6,6,6,0.95) 0%, rgba(6,6,6,0.15) 100%);
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 24px; opacity: 0; transition: opacity 0.4s;
+        }
+        .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay h4 { font-size: 1rem; color: var(--gold-light); margin-bottom: 6px; font-weight: 600; }
+        .portfolio-overlay p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ===== TESTIMONIALS ===== */
+        .testimonials { background: var(--bg-card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .testimonial-card {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 8px; padding: 30px 24px; position: relative;
+        }
+        .testimonial-card::before {
+            content: '\201C'; position: absolute; top: 10px; left: 18px;
+            font-size: 3rem; color: var(--gold); opacity: 0.15; font-family: Georgia, serif; line-height: 1;
+        }
+        .testimonial-card .content {
+            font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;
+            margin-bottom: 20px; padding-top: 14px; font-style: italic;
+        }
+        .testimonial-author {
+            display: flex; align-items: center; gap: 12px;
+            padding-top: 14px; border-top: 1px solid var(--border);
+        }
+        .testimonial-author img {
+            width: 42px; height: 42px; border-radius: 50%;
+            object-fit: cover; border: 2px solid var(--gold-dark);
+        }
+        .testimonial-author .info h5 { font-size: 0.88rem; color: var(--gold-light); font-weight: 600; }
+        .testimonial-author .info span { font-size: 0.72rem; color: var(--text-muted); }
+
+        /* ===== FORM SECTION ===== */
+        .form-section {
+            background: var(--bg); position: relative; overflow: hidden; overflow-x: clip;
+        }
+        .form-wrapper {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+        }
+        .form-info h2 { font-size: 2rem; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.2; }
+        .form-info > p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; line-height: 1.7; }
+
+        .form-benefits { list-style: none; }
+        .form-benefits li {
+            display: flex; align-items: flex-start; gap: 12px;
+            margin-bottom: 20px; font-size: 0.88rem; color: var(--text);
+        }
+        .form-benefits li i {
+            color: var(--gold); margin-top: 4px; font-size: 0.9rem; flex-shrink: 0;
+        }
+        .form-benefits li strong { color: var(--white); }
+
+        .form-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 10px; padding: 36px 32px; position: relative;
+        }
+        .form-card::before {
+            content: ''; position: absolute; top: 0; left: 20%; right: 20%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .form-card h3 {
+            font-size: 1.15rem; color: var(--white); font-weight: 600;
+            margin-bottom: 6px; text-align: center;
+        }
+        .form-card .form-subtitle {
+            font-size: 0.78rem; color: var(--text-muted); text-align: center; margin-bottom: 28px;
+        }
+
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+        .form-group { margin-bottom: 16px; }
+        .form-group label {
+            display: block; font-size: 0.75rem; font-weight: 500; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 11px 14px; background: var(--bg-input);
+            border: 1px solid var(--border); border-radius: 6px;
+            color: var(--white); font-family: inherit; font-size: 0.88rem;
+            transition: border-color 0.3s; outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+        .form-group select { cursor: pointer; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c8962e' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 12px center;
+        }
+        .form-group select option { background: var(--bg); color: var(--text); }
+        .form-group textarea { resize: vertical; min-height: 70px; }
+
+        .form-group.outro-field { display: none; }
+        .form-group.outro-field.visible { display: block; }
+
+        .form-submit {
+            width: 100%; padding: 14px; margin-top: 4px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--bg); border: none; border-radius: 6px;
+            font-family: inherit; font-size: 0.9rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .form-submit:hover {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            box-shadow: 0 8px 30px rgba(200,150,46,0.25);
+            transform: translateY(-1px);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact { background: var(--bg-card); border-top: 1px solid var(--border); }
+        .contact-grid {
+            display: grid; grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px; align-items: start;
+        }
+        .contact-map {
+            border-radius: 8px; overflow: hidden; height: 280px; border: 1px solid var(--border);
+        }
+        .contact-map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.3) contrast(1.1); }
+
+        .contact-info h3 { font-size: 1.3rem; color: var(--gold-light); margin-bottom: 24px; font-weight: 600; }
+        .contact-info ul { list-style: none; }
+        .contact-info ul li {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 18px; color: var(--text-muted); font-size: 0.86rem;
+        }
+        .contact-info ul li i { color: var(--gold); width: 18px; text-align: center; }
+        .contact-info ul li a { transition: color 0.3s; }
+        .contact-info ul li a:hover { color: var(--gold-light); }
+
+        .social-section {
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; height: 100%; gap: 20px;
+        }
+        .social-section h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); }
+        .social-links { display: flex; gap: 14px; }
+        .social-links a {
+            display: flex; align-items: center; justify-content: center;
+            width: 48px; height: 48px; border-radius: 50%;
+            border: 1px solid var(--border); color: var(--gold);
+            font-size: 1.2rem; transition: all 0.3s;
+        }
+        .social-links a:hover {
+            background: var(--gold); color: var(--bg); border-color: var(--gold);
+            transform: translateY(-4px); box-shadow: 0 8px 25px rgba(200,150,46,0.3);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-bottom {
+            text-align: center; padding: 28px 0;
+            border-top: 1px solid var(--border); margin-top: 50px;
+        }
+        .footer-bottom p { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.5px; }
+
+        /* ===== WHATSAPP FLOAT ===== */
+        .whatsapp-float {
+            position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px;
+            background: #25d366; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.6rem; z-index: 999; transition: transform 0.3s;
+            box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+        }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .services-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr 1fr; }
+            .social-section { grid-column: 1 / -1; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .form-wrapper { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            html, body { overflow-x: hidden; }
+
+            .menu-toggle { display: block; }
+            .header-cta { display: none; }
+            nav {
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(6,6,6,0.98); padding: 24px;
+                border-bottom: 1px solid var(--border); display: none;
+            }
+            nav.active { display: block; }
+            nav ul { flex-direction: column; gap: 18px; }
+
+            /* Hero mobile */
+            .hero .container { grid-template-columns: 1fr; text-align: center; gap: 32px; }
+            .hero-tag { justify-content: center; }
+            .hero-tag::before { display: none; }
+            .hero-content h1 { font-size: 2rem; }
+            .hero-content > p { margin: 0 auto 28px; font-size: 0.88rem; }
+            .hero-buttons { justify-content: center; }
+            .hero-buttons .btn { width: 100%; justify-content: center; }
+            .hero-image img { max-width: 200px; }
+            .hero-ring { width: 240px; height: 240px; }
+            .hero-ring-2 { width: 180px; height: 180px; }
+
+            /* Decorative FX - contain on mobile */
+            .fx-glow-tl { width: 250px; height: 250px; top: -5%; left: -15%; }
+            .fx-glow-br { width: 200px; height: 200px; bottom: -5%; right: -10%; }
+            .fx-corners { inset: 16px; }
+            .fx-line-v { display: none; }
+
+            /* Sections */
+            section { padding: 60px 0; }
+            .section-title { margin-bottom: 36px; }
+            .section-title h2 { font-size: 1.5rem; }
+
+            /* Stats */
+            .stats-bar { padding: 30px 0; }
+            .stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .stat-item .number { font-size: 1.5rem; }
+            .stat-item span { font-size: 0.7rem; }
+
+            /* Services */
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .service-card { padding: 24px 20px; }
+
+            /* Portfolio */
+            .portfolio-grid { grid-template-columns: 1fr; gap: 12px; }
+            .portfolio-item { aspect-ratio: 4/3; }
+
+            /* Testimonials */
+            .testimonials-grid { grid-template-columns: 1fr; gap: 16px; }
+            .testimonial-card { padding: 24px 20px; }
+
+            /* Form */
+            .form-wrapper { grid-template-columns: 1fr; gap: 36px; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-card { padding: 24px 18px; }
+            .form-info h2 { font-size: 1.5rem; }
+            .form-benefits li { font-size: 0.82rem; }
+            .form-submit { font-size: 0.82rem; }
+
+            /* Contact */
+            .contact-grid { grid-template-columns: 1fr; gap: 28px; }
+            .contact-map { height: 220px; }
+            .contact-info h3 { font-size: 1.15rem; margin-bottom: 16px; }
+
+            /* WhatsApp float - more breathing room */
+            .whatsapp-float { bottom: 16px; right: 16px; width: 50px; height: 50px; font-size: 1.4rem; }
+
+            .footer-bottom { margin-top: 30px; padding: 20px 0; }
+        }
+
+        @media (max-width: 380px) {
+            .container { padding: 0 16px; }
+            .hero-content h1 { font-size: 1.7rem; }
+            .hero-image img { max-width: 160px; }
+            .hero-ring { width: 200px; height: 200px; }
+            .hero-ring-2 { width: 150px; height: 150px; }
+            .stat-item .number { font-size: 1.3rem; }
+            .btn { padding: 10px 20px; font-size: 0.8rem; }
+            .form-card { padding: 20px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto,h_96/NS_Solutions_logo_sem_subtitulo_zfywei" alt="NS Solutions TI">
+            </a>
+            <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('nav').classList.toggle('active')">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#avaliacoes">Avaliações</a></li>
+                    <li><a href="#orcamento">Orçamento</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <a href="#orcamento" class="btn btn-gold header-cta">
+                <i class="fas fa-rocket"></i> Solicitar Orçamento
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="fx-grid"></div>
+        <div class="fx-glow-tl"></div>
+        <div class="fx-glow-br"></div>
+        <div class="fx-line-v"></div>
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag">Tecnologia &bull; Estratégia &bull; Resultados</span>
+                <h1>Transformamos tecnologia em <span class="gold-gradient">crescimento real</span> para seu negócio</h1>
+                <p>Landing pages que convertem, tráfego local que traz clientes e soluções de T.I que fazem sua empresa escalar. Orçamento gratuito em até 4h.</p>
+                <div class="hero-buttons">
+                    <a href="#orcamento" class="btn btn-gold">
+                        <i class="fas fa-paper-plane"></i> Quero meu Orçamento
+                    </a>
+                    <a href="#servicos" class="btn btn-outline">
+                        Ver Benefícios
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-ring"></div>
+                <div class="hero-ring-2"></div>
+                <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/NS_Solutions_logo_sem_subtitulo_zfywei" alt="NS Solutions TI">
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="number gold-gradient">+200</div>
+                    <span>Projetos entregues</span>
+                </div>
+                <div class="stat-item">
+                    <div class="number gold-gradient">+98%</div>
+                    <span>Taxa de satisfação</span>
+                </div>
+                <div class="stat-item">
+                    <div class="number gold-gradient">+5 Anos</div>
+                    <span>De experiência</span>
+                </div>
+                <div class="stat-item">
+                    <div class="number gold-gradient">24h</div>
+                    <span>Suporte especializado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços com persuasão -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que escolher a <span class="gold">NS Solutions</span>?</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="icon-wrap"><img src="https://nsdigitalsolutions.com.br/wp-content/uploads/2024/04/cu.png" alt="Tráfego Local"></div>
+                        <h3>Tráfego Local</h3>
+                    </div>
+                    <p class="desc">Posicione seu negócio para ser encontrado por clientes da sua região no Google e redes sociais.</p>
+                    <div class="persuasion"><i class="fas fa-bolt"></i> Aumente sua demanda com clientes que já estão procurando por você</div>
+                </div>
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="icon-wrap"><img src="https://nsdigitalsolutions.com.br/wp-content/uploads/2024/04/area-de-trabalho.png" alt="Landing Page"></div>
+                        <h3>Landing Pages</h3>
+                    </div>
+                    <p class="desc">Páginas estratégicas com design moderno, focadas em converter visitantes em clientes reais.</p>
+                    <div class="persuasion"><i class="fas fa-bolt"></i> Pare de perder vendas com sites que não convertem</div>
+                </div>
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="icon-wrap"><img src="https://nsdigitalsolutions.com.br/wp-content/uploads/2024/04/global.png" alt="Desenvolvimento Web"></div>
+                        <h3>Desenvolvimento Web</h3>
+                    </div>
+                    <p class="desc">Sites, e-commerces e dashboards responsivos, rápidos e com integrações modernas.</p>
+                    <div class="persuasion"><i class="fas fa-bolt"></i> Presença digital profissional que gera confiança e vendas</div>
+                </div>
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="icon-wrap"><img src="https://nsdigitalsolutions.com.br/wp-content/uploads/2024/04/comece.png" alt="Suporte"></div>
+                        <h3>Suporte Emergencial</h3>
+                    </div>
+                    <p class="desc">Assistência técnica remota ou no local para resolver problemas de software, hospedagem e domínio.</p>
+                    <div class="persuasion"><i class="fas fa-bolt"></i> Seu problema resolvido sem parar sua operação</div>
+                </div>
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="icon-wrap"><img src="https://nsdigitalsolutions.com.br/wp-content/uploads/2024/04/processo-criativo.png" alt="Consultoria"></div>
+                        <h3>Consultoria T.I</h3>
+                    </div>
+                    <p class="desc">Orientação especializada sobre as melhores práticas e tecnologias para seu negócio.</p>
+                    <div class="persuasion"><i class="fas fa-bolt"></i> Decisões certas que economizam tempo e dinheiro</div>
+                </div>
+                <div class="service-card">
+                    <div class="card-header">
+                        <div class="icon-wrap"><img src="https://nsdigitalsolutions.com.br/wp-content/uploads/2024/04/torre-pc.png" alt="Automação"></div>
+                        <h3>Automação e Produtividade</h3>
+                    </div>
+                    <p class="desc">Automações inteligentes que eliminam tarefas repetitivas e aceleram seus resultados.</p>
+                    <div class="persuasion"><i class="fas fa-bolt"></i> Mais resultado com menos esforço operacional</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="portfolio" id="portfolio">
+        <div class="fx-grid"></div>
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="section-title">
+                <h2>Nossos <span class="gold">Trabalhos</span></h2>
+                <div class="divider"></div>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/trafego_2_x45rrn" alt="Tráfego Local">
+                    <div class="portfolio-overlay">
+                        <h4>Tráfego Local</h4>
+                        <p>Estratégias de tráfego pago e orgânico no Google e redes sociais.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/POST3_khqa29" alt="Desenvolvimento Web">
+                    <div class="portfolio-overlay">
+                        <h4>Desenvolvimento Web</h4>
+                        <p>Sites modernos que convertem visitantes em clientes.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/LANDINGPAGENICO_owvsmo" alt="Landing Page">
+                    <div class="portfolio-overlay">
+                        <h4>Landing Page</h4>
+                        <p>Páginas otimizadas para captura e conversão.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/WhatsApp_Image_2026-05-04_at_01.53.56_xtmx44" alt="Hospedagem">
+                    <div class="portfolio-overlay">
+                        <h4>Hospedagem</h4>
+                        <p>Hospedagem segura com SSL gratuito e alta disponibilidade.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/produtividade_eajmww" alt="SEO">
+                    <div class="portfolio-overlay">
+                        <h4>SEO e Posicionamento</h4>
+                        <p>Estratégias para seu site aparecer no topo do Google.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto/manutencao_tvnmhb" alt="Manutenção">
+                    <div class="portfolio-overlay">
+                        <h4>Manutenção e Suporte</h4>
+                        <p>Atualizações, segurança e suporte técnico dedicado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avaliações -->
+    <section class="testimonials" id="avaliacoes">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que nossos <span class="gold">clientes</span> dizem</h2>
+                <div class="divider"></div>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="content">Excelente experiência de serviço! O atendimento foi extremamente atencioso e prestativo durante todo o processo. Recomendo totalmente!</div>
+                    <div class="testimonial-author">
+                        <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto,w_96/logo_gelamour_nxfonz" alt="Karol Gelamour">
+                        <div class="info">
+                            <h5>Karol Gelamour</h5>
+                            <span>Empresária alimentícia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="content">Atendimento impecável, com um técnico super atencioso e prestativo. Recomendo a todos!</div>
+                    <div class="testimonial-author">
+                        <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto,w_96/logo_grego_da_vg_o5fgix" alt="Vinicius">
+                        <div class="info">
+                            <h5>Vinicius Churrasco Grego</h5>
+                            <span>Empresário</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="content">Empresa confiável e o trabalho com muita qualidade, ótimo custo e benefício. Obrigada pelo atendimento!</div>
+                    <div class="testimonial-author">
+                        <img src="https://res.cloudinary.com/dhbzgqy3m/image/upload/f_auto,q_auto,w_96/logo_velhoty_oajgvb" alt="Nicollas Velhoty">
+                        <div class="info">
+                            <h5>Nicollas Velhoty</h5>
+                            <span>Empresário e Barbeiro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulário de Orçamento -->
+    <section class="form-section" id="orcamento">
+        <div class="fx-grid"></div>
+        <div class="fx-corners"></div>
+        <div class="container" style="position:relative;z-index:1;">
+            <div class="form-wrapper">
+                <div class="form-info">
+                    <h2>Solicite seu <span class="gold-gradient">orçamento gratuito</span></h2>
+                    <p>Preencha o formulário ao lado e receba uma proposta personalizada diretamente no WhatsApp. Sem compromisso.</p>
+                    <ul class="form-benefits">
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Resposta rápida</strong> — retorno em até 4 horas com proposta detalhada</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Sem compromisso</strong> — orçamento 100% gratuito e sem pegadinha</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Atendimento personalizado</strong> — entendemos sua necessidade antes de propor</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Planos flexíveis</strong> — soluções que cabem no seu bolso a partir de R$170/mês</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span><strong>Suporte contínuo</strong> — acompanhamento após a entrega do projeto</span></li>
+                    </ul>
+                </div>
+                <div class="form-card">
+                    <h3>Preencha seus dados</h3>
+                    <p class="form-subtitle">Suas informações serão enviadas diretamente para nosso WhatsApp</p>
+                    <form id="orcamentoForm" onsubmit="return enviarOrcamento(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nome">Nome *</label>
+                                <input type="text" id="nome" placeholder="Seu nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sobrenome">Sobrenome *</label>
+                                <input type="text" id="sobrenome" placeholder="Seu sobrenome" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="localidade">Cidade / Estado *</label>
+                            <input type="text" id="localidade" placeholder="Ex: São Paulo - SP" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="servico">Tipo de Serviço *</label>
+                            <select id="servico" required onchange="toggleOutro()">
+                                <option value="" disabled selected>Selecione o serviço desejado</option>
+                                <option value="Tráfego Local">Tráfego Local</option>
+                                <option value="Landing Page">Landing Page</option>
+                                <option value="Desenvolvimento Web">Desenvolvimento Web (Site / E-commerce)</option>
+                                <option value="Hospedagem e Domínio">Hospedagem e Domínio</option>
+                                <option value="SEO e Posicionamento">SEO e Posicionamento</option>
+                                <option value="Suporte Técnico">Suporte Técnico Emergencial</option>
+                                <option value="Consultoria T.I">Consultoria T.I</option>
+                                <option value="Automação e Produtividade">Automação e Produtividade</option>
+                                <option value="Manutenção de Site">Manutenção de Site</option>
+                                <option value="Outro">Outro (especificar)</option>
+                            </select>
+                        </div>
+                        <div class="form-group outro-field" id="outroField">
+                            <label for="outroServico">Descreva o serviço</label>
+                            <textarea id="outroServico" placeholder="Descreva o que você precisa..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            <i class="fab fa-whatsapp"></i> Enviar pelo WhatsApp
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em <span class="gold">Contato</span></h2>
+                <div class="divider"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-map">
+                    <iframe loading="lazy"
+                        src="https://maps.google.com/maps?q=Rua+Jo%C3%A3o+Angola+do+Amaral,+49&t=m&z=16&output=embed&iwloc=near"
+                        title="NS Solutions TI - Rua João Angola do Amaral, 49"
+                        aria-label="Localização NS Solutions TI"></iframe>
+                </div>
+                <div class="contact-info">
+                    <h3>Fale Conosco</h3>
+                    <ul>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <a href="https://api.whatsapp.com/send/?phone=5511965030076&text=Ol%C3%A1!%20Visitei%20o%20site%20da%20NS%20Solutions%20TI%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os.%20Poderia%20me%20ajudar%20com%20um%20or%C3%A7amento%3F" target="_blank">(11) 96503-0076</a>
+                        </li>
+                        <li>
+                            <i class="far fa-envelope"></i>
+                            <a href="mailto:santanadesouzanicolas32@gmail.com">santanadesouzanicolas32@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Rua João Angola do Amaral, 49</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="social-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/ns_solutions.br?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send/?phone=5511965030076&text=Ol%C3%A1!%20Visitei%20o%20site%20da%20NS%20Solutions%20TI%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os.%20Poderia%20me%20ajudar%20com%20um%20or%C3%A7amento%3F" target="_blank" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nicolas-santana-de-souza-b696392a6" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p><span class="gold">NS Solutions TI</span> &copy; 2023 &mdash; Todos os Direitos Reservados</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float -->
+    <a href="https://api.whatsapp.com/send/?phone=5511965030076&text=Ol%C3%A1!%20Visitei%20o%20site%20da%20NS%20Solutions%20TI%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os.%20Poderia%20me%20ajudar%20com%20um%20or%C3%A7amento%3F" class="whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleOutro() {
+            var select = document.getElementById('servico');
+            var outroField = document.getElementById('outroField');
+            if (select.value === 'Outro') {
+                outroField.classList.add('visible');
+                document.getElementById('outroServico').required = true;
+            } else {
+                outroField.classList.remove('visible');
+                document.getElementById('outroServico').required = false;
+            }
+        }
+
+        function enviarOrcamento(e) {
+            e.preventDefault();
+
+            var nome = document.getElementById('nome').value.trim();
+            var sobrenome = document.getElementById('sobrenome').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var localidade = document.getElementById('localidade').value.trim();
+            var servico = document.getElementById('servico').value;
+            var outroServico = document.getElementById('outroServico').value.trim();
+
+            if (servico === 'Outro' && outroServico) {
+                servico = 'Outro: ' + outroServico;
+            }
+
+            var mensagem =
+                '━━━━━━━━━━━━━━━━━━━━\n' +
+                '📋 *SOLICITAÇÃO DE ORÇAMENTO*\n' +
+                '━━━━━━━━━━━━━━━━━━━━\n\n' +
+                '👤 *Nome:* ' + nome + ' ' + sobrenome + '\n' +
+                '📧 *E-mail:* ' + email + '\n' +
+                '📍 *Localidade:* ' + localidade + '\n' +
+                '🔧 *Serviço:* ' + servico + '\n\n' +
+                '━━━━━━━━━━━━━━━━━━━━\n' +
+                'Mensagem enviada pelo site NS Solutions TI';
+
+            var url = 'https://api.whatsapp.com/send/?phone=5511965030076&text=' + encodeURIComponent(mensagem);
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
