@@ -3,7 +3,7 @@
 <p align="center">Site institucional da minha empresa: sites, landing pages e tráfego local</p>
 
 <p align="center">
-  <a href="https://santanadesouzanicolas32-sketch.github.io/GOOGLEMAPS/"><strong>🌐 Ver projeto online</strong></a>
+  <a href="https://santanadesouzanicolas32-sketch.github.io/ns-solutions-ti/"><strong>🌐 Ver projeto online</strong></a>
 </p>
 
 ---
@@ -30,8 +30,8 @@
 ## 🚀 Como rodar localmente
 
 ```bash
-git clone https://github.com/santanadesouzanicolas32-sketch/GOOGLEMAPS.git
-cd GOOGLEMAPS
+git clone https://github.com/santanadesouzanicolas32-sketch/ns-solutions-ti.git
+cd ns-solutions-ti
 # abra o index.html no navegador ou use a extensão Live Server do VS Code
 ```
 
